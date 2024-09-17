@@ -1,0 +1,10 @@
+@import "variables";
+
+.footer {
+  color: $font-dark;
+  text-align: center;
+
+  @media (prefers-color-scheme: dark) {
+    color: $font-light;
+  }
+}
