@@ -21,7 +21,11 @@
     "semi": true
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "eslint-plugin-jsx-a11y": "^6.10.0",
+    "framer-motion": "^11.5.4",
     "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18",
