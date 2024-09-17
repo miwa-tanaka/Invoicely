@@ -1,0 +1,28 @@
+@import "variables";
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.logo {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.75rem;
+  color: $font-dark;
+
+  @media (prefers-color-scheme: dark) {
+    color: $font-light;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+}
