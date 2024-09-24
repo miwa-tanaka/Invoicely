@@ -1,6 +1,6 @@
 import { Flex, Heading, Text, useTheme, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
-import { useContentHeight } from "@/hooks/useContentHeight";
+import { useContentHeight } from "@/hooks/useContentWidth";
 
 export default function EmptyContents(): JSX.Element {
   const { heading, text } = useEmptyContentsStyles();
