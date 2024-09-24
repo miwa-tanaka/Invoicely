@@ -1,10 +1,11 @@
-import { Box, Flex, useTheme } from "@chakra-ui/react";
+import { Box, Flex, useTheme, useColorMode } from "@chakra-ui/react";
 import type { dataType } from "@/data/dataType";
 
 type statusBadgeProps = Pick<dataType, "status">;
 
 export default function StatusBadge({ status }: statusBadgeProps): JSX.Element {
   const { colors, radii } = useTheme();
+  const { colorMode } = useColorMode();
 
   const getStatusStyles = (status: dataType["status"]) => {
     switch (status) {
@@ -20,8 +21,9 @@ export default function StatusBadge({ status }: statusBadgeProps): JSX.Element {
         };
       case "draft":
         return {
-          backgroundColor: colors.gray[6],
-          color: colors.gray[5],
+          backgroundColor:
+            colorMode === "light" ? colors.gray[6] : colors.gray[7],
+          color: colorMode === "light" ? colors.gray[5] : colors.gray[1],
         };
       default:
         return {};
