@@ -9,5 +9,5 @@
   "stylelint.validate": ["css", "scss", "tsx", "postcss"],
   "scss.validate": false,
   "css.validate": false,
-  "cSpell.userWords": ["Invoicely", "Chakra"]
+  "cSpell.userWords": ["Invoicely", "Chakra", "headshot"]
 }
