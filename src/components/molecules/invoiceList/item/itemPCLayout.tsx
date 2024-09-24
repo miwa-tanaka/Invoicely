@@ -1,30 +1,27 @@
 import NextLink from "next/link";
-import { Link } from "@chakra-ui/react";
-import { Box, useTheme, useColorMode } from "@chakra-ui/react";
+import { Link, Box, useTheme, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import type { dataType } from "@/data/dataType";
-import StatusBadge from "./statusBadge";
+import StatusBadge from "@/components/molecules/invoiceList/statusBadge";
 import ArrowRightIcon from "@/components/atoms/icons/arrowRightIcon";
 
-type invoiceListItemProps = Pick<
+type itemPCLayoutProps = Pick<
   dataType,
   "id" | "createdAt" | "clientName" | "total" | "status"
 >;
 
-export default function InvoiceListItem({
+export default function ItemPCLayout({
   id,
   createdAt,
   clientName,
   total,
   status,
-}: invoiceListItemProps): JSX.Element {
-  const { wrapper, idWrapper, date, name, price } = useInvoiceListItemStyles();
-
-  console.log(status, "status");
+}: itemPCLayoutProps): JSX.Element {
+  const { wrapper, idWrapper, date, name, price } = useItemPCLayoutStyles();
 
   return (
     <Link as={NextLink} href="/" py={4} px={8} css={wrapper}>
-      <Box css={idWrapper} className="id">
+      <Box css={idWrapper}>
         <Box as="span" className="hashtag">
           #
         </Box>
@@ -44,9 +41,14 @@ export default function InvoiceListItem({
   );
 }
 
-export const useInvoiceListItemStyles = () => {
+export const useItemPCLayoutStyles = () => {
   const { colors, radii, space } = useTheme();
   const { colorMode } = useColorMode();
+
+  const fontColorBlackAndWhite =
+    colorMode === "light" ? colors.black[2] : "white";
+  const fontColorGrayAndWhite =
+    colorMode === "light" ? colors.gray[3] : "white";
 
   return {
     wrapper: css`
@@ -66,7 +68,7 @@ export const useInvoiceListItemStyles = () => {
     idWrapper: css`
       width: 15%;
       font-weight: 700;
-      color: ${colors.black[2]};
+      color: ${fontColorBlackAndWhite};
 
       .hashtag {
         color: ${colors.gray[3]};
@@ -74,17 +76,17 @@ export const useInvoiceListItemStyles = () => {
     `,
     date: css`
       width: 18%;
-      color: ${colors.gray[3]};
+      color: ${fontColorGrayAndWhite};
     `,
     name: css`
       width: 18%;
-      color: ${colors.gray[3]};
+      color: ${fontColorGrayAndWhite};
     `,
     price: css`
       width: 18%;
       padding-right: ${space[4]};
       font-weight: 700;
-      color: ${colors.black[2]};
+      color: ${fontColorBlackAndWhite};
       text-align: right;
 
       .currencySymbol {
