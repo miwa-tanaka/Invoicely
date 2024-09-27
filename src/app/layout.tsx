@@ -1,6 +1,6 @@
 "use client";
 import { League_Spartan } from "next/font/google";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme, Flex } from "@chakra-ui/react";
 import "../styles/globals.scss";
 import Header from "@/components/organisms/header";
 
@@ -23,6 +23,8 @@ const theme = extendTheme({
       3: "#7e88c3",
       4: "#494e6e",
       5: "#373B53",
+      6: "rgba(55, 59, 83, 0.0571)",
+      7: "rgba(223, 227, 250, 0.0571)",
     },
     navy: {
       1: "#1e2139",
@@ -39,6 +41,14 @@ const theme = extendTheme({
     white: {
       1: "#f8f8fb",
     },
+    green: {
+      1: "#33D69F",
+      2: "rgba(51, 214, 159, 0.0571)",
+    },
+    orange: {
+      1: "#FF8F00",
+      2: "rgba(255, 143, 0, 0.0571)",
+    },
   },
 });
 
@@ -52,8 +62,10 @@ export default function RootLayout({
       <body className={leagueSpartan.className}>
         <main>
           <ChakraProvider theme={theme}>
-            <Header />
-            {children}
+            <Flex direction={{ base: "column", md: "row" }}>
+              <Header />
+              {children}
+            </Flex>
           </ChakraProvider>
         </main>
       </body>
