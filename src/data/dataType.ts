@@ -24,3 +24,5 @@ export type dataType = {
 };
 
 export type jsonDataType = dataType[];
+
+export type statusDataArray = dataType["status"][];
