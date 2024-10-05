@@ -6,23 +6,27 @@ export type ButtonBaseProps = {
   icon?: JSX.Element;
   text: string;
   style?: Interpolation<object>;
+  onClick?: () => void;
 };
 
 export default function ButtonBase({
   icon,
   text,
   style,
+  onClick,
 }: ButtonBaseProps): JSX.Element {
   const { button } = ButtonBaseStyles();
 
   return (
     <>
       {icon ? (
-        <Button leftIcon={icon} css={[button, style]}>
+        <Button leftIcon={icon} css={[button, style]} onClick={onClick}>
           {text}
         </Button>
       ) : (
-        <Button css={[button, style]}>{text}</Button>
+        <Button css={[button, style]} onClick={onClick}>
+          {text}
+        </Button>
       )}
     </>
   );
