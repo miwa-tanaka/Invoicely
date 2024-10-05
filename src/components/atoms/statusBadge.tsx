@@ -1,7 +1,7 @@
 import { Box, Flex, useTheme, useColorMode } from "@chakra-ui/react";
 import type { dataType } from "@/data/dataType";
 
-type statusBadgeProps = Pick<dataType, "status">;
+export type statusBadgeProps = Pick<dataType, "status">;
 
 export default function StatusBadge({ status }: statusBadgeProps): JSX.Element {
   const { colors, radii } = useTheme();
