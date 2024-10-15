@@ -5,7 +5,7 @@ import "../styles/globals.scss";
 import Header from "@/components/organisms/header";
 
 const leagueSpartan = League_Spartan({
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
   style: ["normal"],
   subsets: ["latin"],
   display: "swap",
@@ -40,6 +40,7 @@ const theme = extendTheme({
     },
     white: {
       1: "#f8f8fb",
+      2: "#F9FAFE",
     },
     green: {
       1: "#33D69F",
