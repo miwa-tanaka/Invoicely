@@ -23,7 +23,11 @@ const generateRandomId = () => {
   return returnId;
 };
 
-export const generateUniqueId = (existingIds: idListType) => {
+export const generateUniqueId = () => {
+  const existingIds: idListType = JSON.parse(
+    localStorage.getItem("invoiceIds") || "[]",
+  );
+
   let newId = generateRandomId();
 
   // check if id is unique
