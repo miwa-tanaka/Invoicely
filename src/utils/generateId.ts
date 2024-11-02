@@ -6,7 +6,8 @@ import type { idListType } from "@/data/dataType";
  *
  * @returns {string} The generated ID.
  */
-const generateRandomId = () => {
+
+function generateRandomId(): string {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const numbers = "0123456789";
 
@@ -21,9 +22,9 @@ const generateRandomId = () => {
   }
 
   return returnId;
-};
+}
 
-export const generateUniqueId = () => {
+export function generateUniqueId(): string {
   const existingIds: idListType = JSON.parse(
     localStorage.getItem("invoiceIds") || "[]",
   );
@@ -36,4 +37,4 @@ export const generateUniqueId = () => {
   }
 
   return newId;
-};
+}
