@@ -19,9 +19,18 @@ export type dataType = {
     postCode: string;
     country: string;
   };
-  items: object[];
+  items: Item[];
   total: number;
 };
+
+export type Item = {
+  name: string;
+  quantity: number;
+  price: number;
+  total: number;
+};
+
+export type idListType = string[];
 
 export type jsonDataType = dataType[];
 
