@@ -1,34 +1,35 @@
 import { css } from "@emotion/react";
-import { Button, useTheme } from "@chakra-ui/react";
+import { Button, ButtonProps, useTheme } from "@chakra-ui/react";
 import { Interpolation } from "@emotion/react";
 
 export type ButtonBaseProps = {
   icon?: JSX.Element;
   text: string;
   style?: Interpolation<object>;
+  type?: "submit" | "reset" | "button";
   onClick?: () => void;
-};
+} & ButtonProps;
 
 export default function ButtonBase({
   icon,
   text,
   style,
+  type,
   onClick,
+  ...rest
 }: ButtonBaseProps): JSX.Element {
   const { button } = ButtonBaseStyles();
 
   return (
-    <>
-      {icon ? (
-        <Button leftIcon={icon} css={[button, style]} onClick={onClick}>
-          {text}
-        </Button>
-      ) : (
-        <Button css={[button, style]} onClick={onClick}>
-          {text}
-        </Button>
-      )}
-    </>
+    <Button
+      type={type || "button"}
+      leftIcon={icon ? icon : undefined}
+      css={[button, style]}
+      onClick={onClick}
+      {...rest}
+    >
+      {text}
+    </Button>
   );
 }
 
