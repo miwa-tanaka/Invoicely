@@ -2,7 +2,7 @@ import NextLink from "next/link";
 import { Link, Box, Flex, useTheme, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import type { dataType } from "@/data/dataType";
-import StatusBadge from "@/components/molecules/invoiceList/statusBadge";
+import StatusBadge from "@/components/atoms/statusBadge";
 
 type itemSPLayoutProps = Pick<
   dataType,
@@ -19,7 +19,7 @@ export default function ItemSPLayout({
   const { wrapper, idWrapper, date, name, price } = useItemSPLayoutStyles();
 
   return (
-    <Link as={NextLink} href="/" css={wrapper}>
+    <Link as={NextLink} href={`/${id}`} css={wrapper}>
       <Flex align="center">
         <Box css={idWrapper}>
           <Box as="span" className="hashtag">

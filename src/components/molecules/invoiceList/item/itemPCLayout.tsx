@@ -2,7 +2,7 @@ import NextLink from "next/link";
 import { Link, Box, useTheme, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import type { dataType } from "@/data/dataType";
-import StatusBadge from "@/components/molecules/invoiceList/statusBadge";
+import StatusBadge from "@/components/atoms/statusBadge";
 import ArrowRightIcon from "@/components/atoms/icons/arrowRightIcon";
 
 type itemPCLayoutProps = Pick<
@@ -20,7 +20,7 @@ export default function ItemPCLayout({
   const { wrapper, idWrapper, date, name, price } = useItemPCLayoutStyles();
 
   return (
-    <Link as={NextLink} href="/" py={4} px={8} css={wrapper}>
+    <Link as={NextLink} href={`/${id}`} passHref py={4} px={8} css={wrapper}>
       <Box css={idWrapper}>
         <Box as="span" className="hashtag">
           #
