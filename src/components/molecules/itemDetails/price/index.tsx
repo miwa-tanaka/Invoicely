@@ -29,15 +29,22 @@ export const usePriceStyles = () => {
         : colors.navy[2]};
       font-family: unset;
     `,
+    table: css`
+      width: 100%;
+      overflow: hidden;
+      table-layout: fixed;
+    `,
     footer: css`
       background-color: ${colorMode === "light"
         ? colors.gray[5]
         : colors.black[1]};
 
       th {
-        padding: ${space[8]};
+        padding: ${space[8]} ${space[4]};
         border-color: transparent;
         color: white;
+        white-space: normal;
+        word-break: break-word;
 
         &:first-of-type {
           border-radius: 0 0 0 ${radii["md"]};
