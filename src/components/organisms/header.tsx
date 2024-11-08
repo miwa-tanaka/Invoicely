@@ -38,6 +38,7 @@ export const HeaderStyles = () => {
       justify-content: space-between;
       background-color: ${colors.navy[1]};
       border-radius: 0;
+      z-index: 9999;
 
       @media screen and (min-width: ${breakpoints["md"]}) {
         width: ${headerSize};
