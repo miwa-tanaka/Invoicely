@@ -18,16 +18,18 @@ export default function PricePCLayout({
   items,
   total,
 }: priceProps): JSX.Element {
-  const { wrapper, footer } = usePriceStyles();
+  const { wrapper, table, footer } = usePriceStyles();
   const { header, body } = usePricePCLayoutStyles();
 
   return (
     <TableContainer w="full" css={wrapper}>
-      <Table overflow="hidden">
+      <Table css={table}>
         <Thead css={header}>
           <Tr>
-            <Th>Item Name</Th>
-            <Th isNumeric>QTY.</Th>
+            <Th style={{ width: "40%" }}>Item Name</Th>
+            <Th isNumeric style={{ width: "13%" }}>
+              QTY.
+            </Th>
             <Th isNumeric>Price</Th>
             <Th isNumeric>Total</Th>
           </Tr>
@@ -62,15 +64,15 @@ export const usePricePCLayoutStyles = () => {
   return {
     header: css`
       th {
-        padding: ${space[8]};
         border-color: transparent;
         text-transform: none;
         color: ${colorMode === "light" ? colors.gray[3] : colors.gray[1]};
         font-weight: 500;
+        padding-top: ${space[8]};
+        padding-inline-start: ${space[4]};
+        padding-inline-end: ${space[4]};
 
-        &:first-of-type {
-          border-radius: ${radii["md"]} 0 0 0;
-        }
+        &:first-of-type,
         &:last-of-type {
           border-radius: 0 ${radii["md"]} 0 0;
         }
@@ -81,10 +83,13 @@ export const usePricePCLayoutStyles = () => {
         border-color: transparent;
         font-weight: 700;
         color: ${colorMode === "light" ? colors.gray[3] : "white"};
+        white-space: normal;
+        word-break: break-word;
+        padding-inline-start: ${space[4]};
+        padding-inline-end: ${space[4]};
 
         &:first-of-type,
         &:last-of-type {
-          padding-left: ${space[8]};
           color: ${colorMode === "light" ? colors.black[1] : "white"};
         }
       }
