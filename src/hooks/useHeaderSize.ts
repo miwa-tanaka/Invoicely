@@ -5,5 +5,7 @@ export const useHeaderSize = () => {
 
   const headerSize = isLargerThanTabletSize ? "6.25rem" : "5rem";
 
-  return { headerSize };
+  const statusHeadingButtonHeight = "4.5rem";
+
+  return { headerSize, statusHeadingButtonHeight };
 };
