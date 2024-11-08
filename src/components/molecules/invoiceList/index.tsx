@@ -4,6 +4,7 @@ import InvoiceListItem from "@/components/molecules/invoiceList/item/index";
 import { useContentHeight } from "@/hooks/useContentWidth";
 import { useHeaderSize } from "@/hooks/useHeaderSize";
 import { useIsLargerThanTabletSize } from "@/hooks/useIsLargerThanTabletSize";
+import { useIsLargerThanPhoneSize } from "@/hooks/useIsLargerThanPhoneSize";
 
 type invoiceListProps = {
   data: jsonDataType;
@@ -14,8 +15,13 @@ export default function InvoiceList({ data }: invoiceListProps): JSX.Element {
   const { headerSize } = useHeaderSize();
   const { space } = useTheme();
   const isLargerThanTabletSize = useIsLargerThanTabletSize();
+  const isLargerThanPhoneSize = useIsLargerThanPhoneSize();
 
-  const marginSize = isLargerThanTabletSize ? space[16] : space[14];
+  const marginSize = isLargerThanTabletSize
+    ? space[16]
+    : isLargerThanPhoneSize
+    ? space[14]
+    : space[7];
 
   const listHeight = isLargerThanTabletSize
     ? `calc(100svh - ${contentHeaderHeight} - ${contentMarginTop} - ${marginSize} - ${marginSize})`
