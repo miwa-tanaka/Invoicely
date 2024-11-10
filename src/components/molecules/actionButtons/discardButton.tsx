@@ -42,7 +42,9 @@ export const useDiscardButtonStyles = () => {
       color: ${colorMode === "light" ? colors.gray[3] : colors.gray[1]};
 
       &:hover {
-        background-color: ${colorMode === "light" ? colors.gray[1] : "white"};
+        background-color: ${colorMode === "light"
+          ? colors.gray[1]
+          : colors.navy[1]};
         color: ${colorMode === "light" ? colors.gray[3] : colors.gray[1]};
       }
     `,
