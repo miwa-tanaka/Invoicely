@@ -1,114 +1,106 @@
 "use client";
 
-import { useState, useEffect } from "react";
-// import invoicesData from "@/data/data.json";
+import { useState, useEffect, useMemo } from "react";
 import { css } from "@emotion/react";
-import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-  useTheme,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Flex, Heading, Text, useTheme, useColorMode } from "@chakra-ui/react";
 import FilterByStatusMenu from "@/components/organisms/filterByStatusMenu";
 import NewInvoiceButton from "@/components/molecules/newInvoiceButton";
 import InvoiceList from "@/components/molecules/invoiceList";
 import EmptyContents from "@/components/molecules/emptyContents";
-import type { jsonDataType, statusDataArray } from "@/data/dataType";
+import type {
+  dataType,
+  idListType,
+  jsonDataType,
+  statusDataArray,
+} from "@/data/dataType";
 import { useContentHeight } from "@/hooks/useContentWidth";
-import { useHeaderSize } from "@/hooks/useHeaderSize";
 import { useIsLargerThanPhoneSize } from "@/hooks/useIsLargerThanPhoneSize";
+import ContentsWrapper from "@/components/templates/contentsWrapper";
+import Drawer from "@/components/organisms/drawer";
+import { useDrawer } from "@/context/drawerContext";
 
 export default function Home() {
-  const { wrapper, content, header, text, heading } = useHomeStyles();
+  const { header, text, heading } = useHomeStyles();
   const [storageInvoiceData, setStorageInvoiceData] = useState<jsonDataType>(
     [],
   );
   const [quantityOfData, setQuantityOfData] = useState<number>(0);
   const isLargerThanPhoneSize = useIsLargerThanPhoneSize();
   const [selectedStatuses, setSelectedStatuses] = useState<statusDataArray>([]);
+  const { isOpen, onOpen, onClose } = useDrawer();
 
   const handleStatusChange = (newStatuses: statusDataArray) => {
     setSelectedStatuses(newStatuses);
   };
 
-  const filteredInvoices = storageInvoiceData.filter(
-    (invoice) =>
-      selectedStatuses.length === 0 ||
-      selectedStatuses.includes(invoice.status),
-  );
+  const filteredInvoices = useMemo(() => {
+    return storageInvoiceData.filter(
+      (invoice) =>
+        selectedStatuses.length === 0 ||
+        selectedStatuses.includes(invoice.status),
+    );
+  }, [storageInvoiceData, selectedStatuses]);
 
-  useEffect(() => {
+  const loadInvoices = () => {
     const storedInvoices = localStorage.getItem("invoices");
-
     const parsedInvoices = storedInvoices ? JSON.parse(storedInvoices) : [];
     setStorageInvoiceData(parsedInvoices);
+
+    // create a list of IDs
+    const invoiceIds: idListType = parsedInvoices.map(
+      (invoice: dataType) => invoice.id,
+    );
+    localStorage.setItem("invoiceIds", JSON.stringify(invoiceIds));
+
     setQuantityOfData(parsedInvoices.length);
+  };
+
+  useEffect(() => {
+    loadInvoices();
   }, []);
 
-  console.log(storageInvoiceData, "storageInvoiceData");
-
   return (
-    <Flex css={wrapper}>
-      <Box css={content}>
-        <Flex css={header}>
-          <Flex direction="column">
-            <Heading as="h1" size="xl" css={heading}>
-              Invoices
-            </Heading>
-            <Text css={text}>
-              {isLargerThanPhoneSize
-                ? `There are ${quantityOfData} total invoices`
-                : `${quantityOfData} invoices`}
-            </Text>
-          </Flex>
-          <Flex gap={8} align="center">
-            <FilterByStatusMenu
-              selectedStatuses={selectedStatuses}
-              onChange={handleStatusChange}
-            />
-            <NewInvoiceButton />
-          </Flex>
+    <ContentsWrapper>
+      <Flex css={header}>
+        <Flex direction="column">
+          <Heading as="h1" size="xl" css={heading}>
+            Invoices
+          </Heading>
+          <Text css={text}>
+            {isLargerThanPhoneSize
+              ? `There are ${quantityOfData} total invoices`
+              : `${quantityOfData} invoices`}
+          </Text>
         </Flex>
-        {quantityOfData > 0 ? (
-          <InvoiceList data={filteredInvoices} />
-        ) : (
-          <EmptyContents />
-        )}
-      </Box>
-    </Flex>
+        <Flex gap={8} align="center">
+          <FilterByStatusMenu
+            selectedStatuses={selectedStatuses}
+            onChange={handleStatusChange}
+          />
+          <NewInvoiceButton onClick={onOpen} />
+        </Flex>
+      </Flex>
+      {quantityOfData > 0 ? (
+        <InvoiceList data={filteredInvoices} />
+      ) : (
+        <EmptyContents />
+      )}
+      <Drawer
+        state="new"
+        isOpen={isOpen}
+        onClose={onClose}
+        updateInvoices={loadInvoices}
+      />
+    </ContentsWrapper>
   );
 }
 
 export const useHomeStyles = () => {
-  const { colors, sizes, space, breakpoints } = useTheme();
+  const { colors } = useTheme();
   const { colorMode } = useColorMode();
-  const { contentHeaderHeight, contentMarginTop } = useContentHeight();
-  const { headerSize } = useHeaderSize();
+  const { contentHeaderHeight } = useContentHeight();
 
   return {
-    wrapper: css`
-      width: 100vw;
-      height: calc(100svh - ${headerSize});
-      justify-content: center;
-
-      padding: 0 ${space[6]};
-      background-color: ${colorMode === "light"
-        ? colors.white[1]
-        : colors.black[2]};
-
-      @media screen and (min-width: ${breakpoints["md"]}) {
-        width: calc(100vw - ${headerSize});
-        height: 100svh;
-      }
-    `,
-
-    content: css`
-      width: ${sizes["3xl"]};
-      margin-top: ${contentMarginTop};
-    `,
-
     header: css`
       height: ${contentHeaderHeight};
       align-items: center;
