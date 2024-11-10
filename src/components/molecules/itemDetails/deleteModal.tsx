@@ -13,7 +13,6 @@ import { useRouter } from "next/navigation";
 import { css } from "@emotion/react";
 import type { dataType } from "@/data/dataType";
 import ButtonBase from "@/components/atoms/buttonBase";
-import { useDeleteModalButtonStyles } from "@/components/molecules/itemDetails/deleteModalButton";
 
 export type deleteModalProps = {
   id: dataType["id"];
@@ -26,9 +25,14 @@ export default function DeleteModal({
   isOpen,
   onClose,
 }: deleteModalProps): JSX.Element {
-  const { contentWrapper, modalHeader, modalBody, modalFooter, cancelButton } =
-    useDeleteModalStyles();
-  const { style } = useDeleteModalButtonStyles();
+  const {
+    contentWrapper,
+    modalHeader,
+    modalBody,
+    modalFooter,
+    deleteButton,
+    cancelButton,
+  } = useDeleteModalStyles();
   const router = useRouter();
 
   const deleteItem = () => {
@@ -43,7 +47,12 @@ export default function DeleteModal({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      isCentered
+      size={{ base: "xs", sm: "md" }}
+    >
       <ModalOverlay />
       <ModalContent css={contentWrapper}>
         <ModalHeader css={modalHeader}>Confirm Deletion</ModalHeader>
@@ -53,7 +62,7 @@ export default function DeleteModal({
         </ModalBody>
         <ModalFooter css={modalFooter}>
           <ButtonBase text="Cancel" onClick={onClose} style={cancelButton} />
-          <ButtonBase text="Delete" onClick={deleteItem} style={style} />
+          <ButtonBase text="Delete" onClick={deleteItem} style={deleteButton} />
         </ModalFooter>
       </ModalContent>
     </Modal>
@@ -61,7 +70,7 @@ export default function DeleteModal({
 }
 
 export const useDeleteModalStyles = () => {
-  const { colors, space, fontSizes } = useTheme();
+  const { colors, space, fontSizes, breakpoints } = useTheme();
   const { colorMode } = useColorMode();
 
   return {
@@ -69,17 +78,41 @@ export const useDeleteModalStyles = () => {
       background-color: ${colorMode === "light" ? "white" : colors.navy[1]};
     `,
     modalHeader: css`
-      padding: ${space[12]} ${space[12]} ${space[2]} ${space[12]};
+      padding: ${space[8]} ${space[8]} ${space[2]} ${space[8]};
       font-size: ${fontSizes["2xl"]};
       color: ${colorMode === "light" ? colors.black[1] : "white"};
+
+      @media screen and (min-width: ${breakpoints["sm"]}) {
+        padding: ${space[12]} ${space[12]} ${space[2]} ${space[12]};
+      }
     `,
     modalBody: css`
-      padding: ${space[3]} ${space[12]};
+      padding: ${space[3]} ${space[8]};
       color: ${colorMode === "light" ? colors.gray[2] : colors.gray[1]};
+
+      @media screen and (min-width: ${breakpoints["sm"]}) {
+        padding: ${space[3]} ${space[12]};
+      }
     `,
     modalFooter: css`
-      gap: ${space[2]};
-      padding: ${space[3]} ${space[12]} ${space[12]} ${space[12]};
+      gap: ${space[6]};
+      padding: ${space[3]} ${space[8]} ${space[8]} ${space[8]};
+
+      @media screen and (min-width: ${breakpoints["sm"]}) {
+        gap: ${space[2]};
+        padding: ${space[3]} ${space[12]} ${space[12]} ${space[12]};
+      }
+    `,
+    deleteButton: css`
+      padding: 0 ${space[7]};
+      background-color: ${colors.red[1]};
+      color: white;
+      transition: 0.2s ease;
+      cursor: pointer;
+
+      &:hover {
+        background-color: ${colors.red[2]};
+      }
     `,
     cancelButton: css`
       background-color: ${colorMode === "light"

@@ -28,7 +28,9 @@ export default function PriceSPLayout({
           {items.map((v, k) => (
             <React.Fragment key={k}>
               <Tr>
-                <Td pb={1}>{v.name}</Td>
+                <Td pb={1} w="35%">
+                  {v.name}
+                </Td>
                 <Td isNumeric rowSpan={2}>
                   £ {v.total.toFixed(2)}
                 </Td>
@@ -43,7 +45,7 @@ export default function PriceSPLayout({
         </Tbody>
         <Tfoot css={footer}>
           <Tr>
-            <Th>Amount Due</Th>
+            <Th w="35%">Amount Due</Th>
             <Th isNumeric>£ {total.toFixed(2)}</Th>
           </Tr>
         </Tfoot>
