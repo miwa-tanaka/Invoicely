@@ -2,7 +2,6 @@ import { css } from "@emotion/react";
 import {
   ListItem,
   UnorderedList,
-  Box,
   Flex,
   Text,
   Table,
