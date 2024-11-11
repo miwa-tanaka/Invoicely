@@ -95,7 +95,7 @@ export default function Home() {
   );
 }
 
-export const useHomeStyles = () => {
+const useHomeStyles = () => {
   const { colors } = useTheme();
   const { colorMode } = useColorMode();
   const { contentHeaderHeight } = useContentHeight();
