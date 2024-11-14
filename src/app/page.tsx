@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { css } from "@emotion/react";
+import { useSearchParams } from "next/navigation";
 import { Flex, Heading, Text, useTheme, useColorMode } from "@chakra-ui/react";
 import FilterByStatusMenu from "@/components/organisms/filterByStatusMenu";
 import NewInvoiceButton from "@/components/molecules/newInvoiceButton";
@@ -18,6 +19,8 @@ import { useIsLargerThanPhoneSize } from "@/hooks/useIsLargerThanPhoneSize";
 import ContentsWrapper from "@/components/templates/contentsWrapper";
 import Drawer from "@/components/organisms/drawer";
 import { useDrawer } from "@/hooks/useDrawer";
+import { useItemDetail } from "@/hooks/useItemDetail";
+import ItemDetail from "@/components/templates/itemDetail";
 
 export default function Home() {
   const { header, text, heading } = useHomeStyles();
@@ -25,9 +28,16 @@ export default function Home() {
     [],
   );
   const [quantityOfData, setQuantityOfData] = useState<number>(0);
+  const [paramData, setParamData] = useState<string | null>(null);
   const isLargerThanPhoneSize = useIsLargerThanPhoneSize();
   const [selectedStatuses, setSelectedStatuses] = useState<statusDataArray>([]);
   const { isOpen, onOpen, onClose } = useDrawer();
+  const {
+    isOpen: isItemDetailOpen,
+    onOpen: openItemDetail,
+    onClose: closeItemDetail,
+  } = useItemDetail();
+  const searchParams = useSearchParams();
 
   const handleStatusChange = (newStatuses: statusDataArray) => {
     setSelectedStatuses(newStatuses);
@@ -59,39 +69,60 @@ export default function Home() {
     loadInvoices();
   }, []);
 
+  useEffect(() => {
+    const itemId = searchParams.get("id");
+    setParamData(itemId);
+    const idLists = localStorage.getItem("invoiceIds");
+
+    if (idLists) {
+      const parsedIdLists: string[] = JSON.parse(idLists);
+      const foundItem = parsedIdLists.find((value) => value === paramData);
+      console.log(foundItem);
+      openItemDetail();
+    } else {
+      closeItemDetail();
+    }
+  }, [searchParams, paramData, openItemDetail, closeItemDetail]);
+
   return (
-    <ContentsWrapper>
-      <Flex css={header}>
-        <Flex direction="column">
-          <Heading as="h1" size="xl" css={heading}>
-            Invoices
-          </Heading>
-          <Text css={text}>
-            {isLargerThanPhoneSize
-              ? `There are ${quantityOfData} total invoices`
-              : `${quantityOfData} invoices`}
-          </Text>
-        </Flex>
-        <Flex gap={8} align="center">
-          <FilterByStatusMenu
-            selectedStatuses={selectedStatuses}
-            onChange={handleStatusChange}
-          />
-          <NewInvoiceButton onClick={onOpen} />
-        </Flex>
-      </Flex>
-      {quantityOfData > 0 ? (
-        <InvoiceList data={filteredInvoices} />
+    <>
+      {isItemDetailOpen && paramData ? (
+        <ItemDetail id={paramData} />
       ) : (
-        <EmptyContents />
+        <ContentsWrapper>
+          <Flex css={header}>
+            <Flex direction="column">
+              <Heading as="h1" size="xl" css={heading}>
+                Invoices
+              </Heading>
+              <Text css={text}>
+                {isLargerThanPhoneSize
+                  ? `There are ${quantityOfData} total invoices`
+                  : `${quantityOfData} invoices`}
+              </Text>
+            </Flex>
+            <Flex gap={8} align="center">
+              <FilterByStatusMenu
+                selectedStatuses={selectedStatuses}
+                onChange={handleStatusChange}
+              />
+              <NewInvoiceButton onClick={onOpen} />
+            </Flex>
+          </Flex>
+          {quantityOfData > 0 ? (
+            <InvoiceList data={filteredInvoices} />
+          ) : (
+            <EmptyContents />
+          )}
+          <Drawer
+            state="new"
+            isOpen={isOpen}
+            onClose={onClose}
+            updateInvoices={loadInvoices}
+          />
+        </ContentsWrapper>
       )}
-      <Drawer
-        state="new"
-        isOpen={isOpen}
-        onClose={onClose}
-        updateInvoices={loadInvoices}
-      />
-    </ContentsWrapper>
+    </>
   );
 }
 

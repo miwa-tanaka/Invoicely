@@ -1,9 +1,10 @@
-import NextLink from "next/link";
-import { Link, Box, useTheme, useColorMode } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
+import { Button, Box, useTheme, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import type { dataType } from "@/data/dataType";
 import StatusBadge from "@/components/atoms/statusBadge";
 import ArrowRightIcon from "@/components/atoms/icons/arrowRightIcon";
+import { useItemDetail } from "@/hooks/useItemDetail";
 
 type itemPCLayoutProps = Pick<
   dataType,
@@ -18,9 +19,16 @@ export default function ItemPCLayout({
   status,
 }: itemPCLayoutProps): JSX.Element {
   const { wrapper, idWrapper, date, name, price } = useItemPCLayoutStyles();
+  const { onOpen } = useItemDetail();
+  const router = useRouter();
+
+  const setPram = () => {
+    router.push(`/?id=${id}`);
+    onOpen();
+  };
 
   return (
-    <Link as={NextLink} href={`/${id}`} passHref py={4} px={8} css={wrapper}>
+    <Button py={4} px={8} css={wrapper} onClick={setPram}>
       <Box css={idWrapper}>
         <Box as="span" className="hashtag">
           #
@@ -37,7 +45,7 @@ export default function ItemPCLayout({
       </Box>
       <StatusBadge status={status} />
       <ArrowRightIcon />
-    </Link>
+    </Button>
   );
 }
 
@@ -52,6 +60,7 @@ export const useItemPCLayoutStyles = () => {
 
   return {
     wrapper: css`
+      height: auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -59,10 +68,12 @@ export const useItemPCLayoutStyles = () => {
       background-color: ${colorMode === "light" ? "white" : colors.navy[1]};
       box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.1004);
       border: 1px solid transparent;
+      white-space: normal;
 
       &:hover {
         border-color: ${colors.purple[1]};
         text-decoration: none;
+        background-color: ${colorMode === "light" ? "white" : colors.navy[1]};
       }
     `,
     idWrapper: css`
