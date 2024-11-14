@@ -4,7 +4,6 @@ import { ChakraProvider, extendTheme, Flex } from "@chakra-ui/react";
 import { RecoilRoot } from "recoil";
 import "../styles/globals.scss";
 import Header from "@/components/organisms/header";
-import { DrawerProvider } from "@/context/drawerContext";
 
 const leagueSpartan = League_Spartan({
   weight: ["400", "500", "700"],
@@ -66,12 +65,10 @@ export default function RootLayout({
         <main>
           <RecoilRoot>
             <ChakraProvider theme={theme}>
-              <DrawerProvider>
-                <Flex direction={{ base: "column", md: "row" }}>
-                  <Header />
-                  {children}
-                </Flex>
-              </DrawerProvider>
+              <Flex direction={{ base: "column", md: "row" }}>
+                <Header />
+                {children}
+              </Flex>
             </ChakraProvider>
           </RecoilRoot>
         </main>

@@ -17,7 +17,7 @@ import { useContentHeight } from "@/hooks/useContentWidth";
 import { useIsLargerThanPhoneSize } from "@/hooks/useIsLargerThanPhoneSize";
 import ContentsWrapper from "@/components/templates/contentsWrapper";
 import Drawer from "@/components/organisms/drawer";
-import { useDrawer } from "@/context/drawerContext";
+import { useDrawer } from "@/hooks/useDrawer";
 
 export default function Home() {
   const { header, text, heading } = useHomeStyles();
