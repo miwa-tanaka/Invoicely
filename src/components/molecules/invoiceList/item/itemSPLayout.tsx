@@ -1,8 +1,9 @@
-import NextLink from "next/link";
-import { Link, Box, Flex, useTheme, useColorMode } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
+import { Button, Box, Flex, useTheme, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import type { dataType } from "@/data/dataType";
 import StatusBadge from "@/components/atoms/statusBadge";
+import { useItemDetail } from "@/hooks/useItemDetail";
 
 type itemSPLayoutProps = Pick<
   dataType,
@@ -17,10 +18,17 @@ export default function ItemSPLayout({
   status,
 }: itemSPLayoutProps): JSX.Element {
   const { wrapper, idWrapper, date, name, price } = useItemSPLayoutStyles();
+  const { onOpen } = useItemDetail();
+  const router = useRouter();
+
+  const setPram = () => {
+    router.push(`/?id=${id}`);
+    onOpen();
+  };
 
   return (
-    <Link as={NextLink} href={`/${id}`} css={wrapper}>
-      <Flex align="center">
+    <Button css={wrapper} onClick={setPram}>
+      <Flex w="full" align="center" justify="space-between">
         <Box css={idWrapper}>
           <Box as="span" className="hashtag">
             #
@@ -29,8 +37,8 @@ export default function ItemSPLayout({
         </Box>
         <Box css={name}>{clientName}</Box>
       </Flex>
-      <Flex align="center" justify="space-between">
-        <Flex flexDirection="column" w="50%" gap={2}>
+      <Flex w="full" align="center" justify="space-between">
+        <Flex flexDirection="column" gap={2} align="flex-start">
           <Box css={date}>Due {createdAt}</Box>
           <Box css={price}>
             <Box as="span" className="currencySymbol">
@@ -41,7 +49,7 @@ export default function ItemSPLayout({
         </Flex>
         <StatusBadge status={status} />
       </Flex>
-    </Link>
+    </Button>
   );
 }
 
@@ -56,6 +64,7 @@ export const useItemSPLayoutStyles = () => {
 
   return {
     wrapper: css`
+      height: auto;
       display: flex;
       flex-direction: column;
       gap: ${space[6]};
@@ -68,10 +77,10 @@ export const useItemSPLayoutStyles = () => {
       &:hover {
         border-color: ${colors.purple[1]};
         text-decoration: none;
+        background-color: ${colorMode === "light" ? "white" : colors.navy[1]};
       }
     `,
     idWrapper: css`
-      width: 50%;
       font-weight: 700;
       color: ${fontColorBlackAndWhite};
 
@@ -83,7 +92,6 @@ export const useItemSPLayoutStyles = () => {
       color: ${fontColorGrayAndWhite};
     `,
     name: css`
-      width: 50%;
       color: ${fontColorGrayAndWhite};
       text-align: right;
     `,

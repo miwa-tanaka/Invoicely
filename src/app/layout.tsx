@@ -1,9 +1,9 @@
 "use client";
 import { League_Spartan } from "next/font/google";
 import { ChakraProvider, extendTheme, Flex } from "@chakra-ui/react";
+import { RecoilRoot } from "recoil";
 import "../styles/globals.scss";
 import Header from "@/components/organisms/header";
-import { DrawerProvider } from "@/context/drawerContext";
 
 const leagueSpartan = League_Spartan({
   weight: ["400", "500", "700"],
@@ -63,14 +63,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={leagueSpartan.className}>
         <main>
-          <ChakraProvider theme={theme}>
-            <DrawerProvider>
+          <RecoilRoot>
+            <ChakraProvider theme={theme}>
               <Flex direction={{ base: "column", md: "row" }}>
                 <Header />
                 {children}
               </Flex>
-            </DrawerProvider>
-          </ChakraProvider>
+            </ChakraProvider>
+          </RecoilRoot>
         </main>
       </body>
     </html>

@@ -1,7 +1,7 @@
 import { useTheme, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import ButtonBase from "@/components/atoms/buttonBase";
-import { useDrawer } from "@/context/drawerContext";
+import { useDrawer } from "@/hooks/useDrawer";
 
 export type editButtonProps = object;
 
