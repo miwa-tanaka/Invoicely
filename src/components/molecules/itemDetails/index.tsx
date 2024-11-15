@@ -1,5 +1,5 @@
-import NextLink from "next/link";
-import { Link, Flex, useTheme, useColorMode } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
+import { Flex, useTheme, useColorMode, Button } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import ArrowLeftIcon from "@/components/atoms/icons/arrowLeftIcon";
 import type { dataType } from "@/data/dataType";
@@ -10,6 +10,7 @@ import { useContentHeight } from "@/hooks/useContentWidth";
 import { useHeaderSize } from "@/hooks/useHeaderSize";
 import { useIsLargerThanTabletSize } from "@/hooks/useIsLargerThanTabletSize";
 import { useIsLargerThanPhoneSize } from "@/hooks/useIsLargerThanPhoneSize";
+import { useItemDetail } from "@/hooks/useItemDetail";
 
 type itemDetailsProps = {
   data: dataType;
@@ -27,13 +28,21 @@ export default function ItemDetails({
   onDeleteModalClose,
 }: itemDetailsProps): JSX.Element {
   const { contesWrapper, link, wrapper } = useItemDetailsStyles();
+  const { onClose } = useItemDetail();
+
+  const router = useRouter();
+
+  const setPram = () => {
+    router.push(`/`);
+    onClose();
+  };
 
   return (
     <Flex direction="column" gap={6} css={contesWrapper}>
-      <Link as={NextLink} href="/" css={link}>
+      <Button onClick={setPram} css={link}>
         <ArrowLeftIcon />
         Go back
-      </Link>
+      </Button>
       <StatusHeading
         status={data.status}
         id={data.id}
@@ -87,10 +96,12 @@ export const useItemDetailsStyles = () => {
       font-weight: 700;
       color: ${colorMode === "light" ? colors.black[1] : "white"};
       cursor: pointer;
+      background-color: transparent;
 
       &:hover {
         text-decoration: none;
         color: ${colorMode === "light" ? colors.gray[3] : colors.gray[2]};
+        background-color: transparent;
       }
     `,
     wrapper: css`
