@@ -17,7 +17,7 @@ export default function Header(): JSX.Element {
       <Flex css={userWrapper}>
         <Box css={user}>
           <Image
-            src="/images/image-avatar.jpg"
+            src="/Invoicely/images/image-avatar.jpg"
             alt="headshot: John Doe"
             width={40}
             height={40}
