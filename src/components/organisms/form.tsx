@@ -185,11 +185,7 @@ export default function Form({
   };
 
   return (
-    <form
-      // method="POST"
-      ref={formRef}
-      style={{ height: "100%", overflowY: "auto" }}
-    >
+    <form ref={formRef} style={{ height: "100%", overflowY: "auto" }}>
       <Flex direction="column" px={{ base: 5, sm: 8 }} pb={4}>
         <Text css={sectionTitle}>Bill From</Text>
         <TextField
