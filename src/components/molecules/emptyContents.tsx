@@ -9,7 +9,12 @@ export default function EmptyContents(): JSX.Element {
 
   return (
     <Flex direction="column" justify="center" align="center" h={contentHeight}>
-      <Image src="/images/empty-illust.png" alt="" width={241} height={200} />
+      <Image
+        src="/Invoicely/images/empty-illust.png"
+        alt=""
+        width={241}
+        height={200}
+      />
       <Heading as="h2" mt={16} mb={6} fontSize="2xl" css={heading}>
         There is nothing here
       </Heading>
