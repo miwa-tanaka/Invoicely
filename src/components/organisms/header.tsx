@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Box, Flex, useTheme } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import Logo from "@/components/atoms/logo";
@@ -6,6 +7,7 @@ import { useHeaderSize } from "@/hooks/useHeaderSize";
 
 export default function Header(): JSX.Element {
   const { wrapper, logoWrapper, userWrapper, user } = HeaderStyles();
+
   return (
     <Flex as="header" css={wrapper}>
       <Flex css={logoWrapper}>
@@ -14,7 +16,7 @@ export default function Header(): JSX.Element {
       </Flex>
       <Flex css={userWrapper}>
         <Box css={user}>
-          <img
+          <Image
             src="/images/image-avatar.jpg"
             alt="headshot: John Doe"
             width={40}
