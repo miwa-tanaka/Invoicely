@@ -186,7 +186,7 @@ export default function Form({
 
   return (
     <form
-      method="POST"
+      // method="POST"
       ref={formRef}
       style={{ height: "100%", overflowY: "auto" }}
     >
