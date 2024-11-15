@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+// import { useEffect } from "react";
+// import { useRouter } from "next/navigation";
 import {
   Drawer as ChakraDrawer,
   DrawerBody,
@@ -33,13 +33,13 @@ export default function Drawer({
   data,
 }: DrawerProps): JSX.Element {
   const { leftSpace, content, header } = useDrawerStyles();
-  const router = useRouter();
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (isOpen && state === "new") {
-      router.push(`/`);
-    }
-  }, [isOpen, state, router]);
+  // useEffect(() => {
+  //   if (isOpen && state === "new") {
+  //     router.push(`/`);
+  //   }
+  // }, [isOpen, state, router]);
 
   return (
     <ChakraDrawer placement="left" onClose={onClose} isOpen={isOpen} size="lg">
