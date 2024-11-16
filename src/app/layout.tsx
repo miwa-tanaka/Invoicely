@@ -17,6 +17,8 @@ const theme = extendTheme({
     purple: {
       1: "#7c5dfa",
       2: "#9277ff",
+      3: "#6446E0",
+      4: "#7862D0",
     },
     gray: {
       1: "#dfe3fa",
@@ -26,6 +28,9 @@ const theme = extendTheme({
       5: "#373B53",
       6: "rgba(55, 59, 83, 0.0571)",
       7: "rgba(223, 227, 250, 0.0571)",
+      8: "#6E728A",
+      9: "#5C638A",
+      10: "#5B6395",
     },
     navy: {
       1: "#1e2139",
@@ -38,6 +43,8 @@ const theme = extendTheme({
     red: {
       1: "#ec5757",
       2: "#ff9797",
+      3: "#CB4A4A",
+      4: "#D53F3F",
     },
     white: {
       1: "#f8f8fb",
