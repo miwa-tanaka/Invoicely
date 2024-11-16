@@ -36,24 +36,16 @@ function SearchItemDetail(): JSX.Element | null {
 }
 
 export default function Home() {
-  const renderSearchOrContents = () => {
-    return (
-      <Suspense>
-        <SearchOrContents />
-      </Suspense>
-    );
-  };
+  return (
+    <Suspense>
+      <AllOrDetail />
+    </Suspense>
+  );
+}
 
-  function SearchOrContents() {
-    const searchParams = useSearchParams();
-    const paramData = searchParams.get("id");
+function AllOrDetail() {
+  const searchParams = useSearchParams();
+  const paramData = searchParams.get("id");
 
-    if (paramData) {
-      return <SearchItemDetail />;
-    }
-
-    return <AllInvoiceList />;
-  }
-
-  return <Suspense>{renderSearchOrContents()}</Suspense>;
+  return paramData ? <SearchItemDetail /> : <AllInvoiceList />;
 }
