@@ -35,7 +35,7 @@ export const LogoStyles = () => {
       height: ${headerSize};
       position: relative;
       overflow: hidden;
-      background-color: ${colors.purple[1]};
+      background-color: ${colors.purple[3]};
       border-radius: 0 ${radii["2xl"]} ${radii["2xl"]} 0;
 
       &::before {
@@ -45,7 +45,7 @@ export const LogoStyles = () => {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: ${colors.purple[1]};
+        background-color: ${colors.purple[3]};
         border-radius: 0 ${radii["2xl"]} ${radii["2xl"]} 0;
       }
 
@@ -56,7 +56,7 @@ export const LogoStyles = () => {
         position: absolute;
         bottom: 0;
         left: 0;
-        background-color: ${colors.purple[2]};
+        background-color: ${colors.purple[4]};
         border-radius: ${radii["2xl"]} 0 0 0;
       }
 

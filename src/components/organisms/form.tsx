@@ -450,7 +450,7 @@ export const useFormStyles = () => {
   const gapValue = space[3];
   return {
     sectionTitle: css`
-      color: ${colors.purple[1]};
+      color: ${colors.purple[3]};
       font-weight: 700;
       margin-top: ${space[6]};
     `,

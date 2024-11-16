@@ -28,12 +28,12 @@ export const useSubmitButtonStyles = () => {
 
   return {
     submitButton: css`
-      background-color: ${colors.purple[1]};
+      background-color: ${colors.purple[3]};
       font-weight: 700;
       color: white;
 
       &:hover {
-        background-color: ${colors.purple[2]};
+        background-color: ${colors.purple[4]};
       }
     `,
   };

@@ -381,7 +381,7 @@ export const useItemListStyles = () => {
         background-color: transparent;
 
         svg path {
-          fill: ${colors.red[1]};
+          fill: ${colors.red[3]};
         }
       }
     `,

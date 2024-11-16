@@ -105,13 +105,13 @@ export const useDeleteModalStyles = () => {
     `,
     deleteButton: css`
       padding: 0 ${space[7]};
-      background-color: ${colors.red[1]};
+      background-color: ${colors.red[3]};
       color: white;
       transition: 0.2s ease;
       cursor: pointer;
 
       &:hover {
-        background-color: ${colors.red[2]};
+        background-color: ${colors.red[4]};
       }
     `,
     cancelButton: css`
