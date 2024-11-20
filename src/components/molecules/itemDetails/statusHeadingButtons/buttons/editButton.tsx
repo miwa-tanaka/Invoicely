@@ -28,6 +28,7 @@ export const useEditButtonStyles = () => {
 
       &:hover {
         background-color: ${colorMode === "light" ? colors.gray[1] : "white"};
+        color: ${colorMode === "light" ? colors.gray[10] : colors.gray[9]};
       }
     `,
   };

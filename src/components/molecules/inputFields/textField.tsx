@@ -102,7 +102,7 @@ export const useTextFieldStyles = () => {
       padding-bottom: ${space[2]};
     `,
     error: css`
-      color: ${colors.red[3]};
+      color: ${colorMode === "light" ? colors.red[3] : colors.red[1]};
       margin-left: auto;
     `,
     inputStyle: css`
@@ -121,7 +121,7 @@ export const useTextFieldStyles = () => {
       }
     `,
     inputError: css`
-      border-color: ${colors.red[3]};
+      border-color: ${colorMode === "light" ? colors.red[3] : colors.red[1]};
     `,
   };
 };

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { Flex, Text, useTheme } from "@chakra-ui/react";
+import { Flex, Text, useTheme, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import type { dataType, Item } from "@/data/dataType";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -447,10 +447,12 @@ export default function Form({
 
 export const useFormStyles = () => {
   const { space, colors, fontSizes, breakpoints } = useTheme();
+  const { colorMode } = useColorMode();
   const gapValue = space[3];
+
   return {
     sectionTitle: css`
-      color: ${colors.purple[3]};
+      color: ${colorMode === "light" ? colors.purple[3] : colors.purple[2]};
       font-weight: 700;
       margin-top: ${space[6]};
     `,
