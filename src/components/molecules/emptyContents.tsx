@@ -41,7 +41,7 @@ export const useEmptyContentsStyles = () => {
       color: ${colorMode === "light" ? colors.black[1] : colors.white[1]};
     `,
     text: css`
-      color: ${colorMode === "light" ? colors.gray[2] : colors.white[1]};
+      color: ${colorMode === "light" ? colors.gray[9] : colors.white[1]};
       text-align: center;
     `,
   };

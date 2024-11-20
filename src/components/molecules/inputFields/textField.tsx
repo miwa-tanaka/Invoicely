@@ -98,7 +98,7 @@ export const useTextFieldStyles = () => {
       align-items: center;
       gap: ${space[4]};
       font-weight: 500;
-      color: ${colorMode === "light" ? colors.gray[3] : colors.gray[1]};
+      color: ${colorMode === "light" ? colors.gray[10] : colors.gray[1]};
       padding-bottom: ${space[2]};
     `,
     error: css`
@@ -109,8 +109,8 @@ export const useTextFieldStyles = () => {
       width: 100%;
       height: ${space[12]};
       padding-inline: ${space[4]};
-      border: 2px solid
-        ${colorMode === "light" ? colors.gray[1] : colors.navy[2]};
+      border: 1px solid
+        ${colorMode === "light" ? colors.gray[3] : colors.navy[2]};
       border-radius: ${radii["md"]};
       font-weight: 700;
       color: ${colorMode === "light" ? colors.black[1] : "white"};

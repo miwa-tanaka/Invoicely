@@ -325,7 +325,7 @@ export const useItemListStyles = () => {
   const { colorMode } = useColorMode();
 
   const fontStyle = `${
-    colorMode === "light" ? colors.gray[3] : colors.gray[1]
+    colorMode === "light" ? colors.gray[10] : colors.gray[1]
   }`;
 
   return {
@@ -358,7 +358,7 @@ export const useItemListStyles = () => {
     `,
     addItemButton: css`
       width: 100%;
-      color: ${colorMode === "light" ? colors.gray[3] : colors.gray[1]};
+      color: ${colorMode === "light" ? colors.gray[10] : colors.gray[1]};
       font-weight: 700;
       background-color: ${colorMode === "light"
         ? colors.white[2]

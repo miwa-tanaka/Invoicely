@@ -22,7 +22,7 @@ export const useEditButtonStyles = () => {
       background-color: ${colorMode === "light"
         ? colors.white[2]
         : colors.navy[2]};
-      color: ${colorMode === "light" ? colors.gray[3] : colors.gray[1]};
+      color: ${colorMode === "light" ? colors.gray[10] : colors.gray[1]};
       transition: 0.2s ease;
       cursor: pointer;
 

@@ -32,7 +32,7 @@ export default function DetailTable({
       <Flex w="full" justify="space-between" wrap="wrap">
         <Box>
           <Text css={dark}>
-            <Text as="span" color={colors.gray[3]}>
+            <Text as="span" color={colors.gray[8]}>
               #
             </Text>
             {id}
@@ -81,7 +81,7 @@ export const useDetailTableStyles = () => {
   const { colorMode } = useColorMode();
 
   const fontColorGrayAndWhite =
-    colorMode === "light" ? colors.gray[3] : "white";
+    colorMode === "light" ? colors.gray[10] : "white";
 
   return {
     dark: css`

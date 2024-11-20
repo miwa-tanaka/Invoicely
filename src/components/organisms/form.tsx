@@ -455,7 +455,7 @@ export const useFormStyles = () => {
       margin-top: ${space[6]};
     `,
     itemTitle: css`
-      color: ${colors.gray[3]};
+      color: ${colors.gray[10]};
       font-size: ${fontSizes["lg"]};
       font-weight: 700;
       margin-top: ${space[10]};

@@ -66,7 +66,7 @@ export const usePricePCLayoutStyles = () => {
       th {
         border-color: transparent;
         text-transform: none;
-        color: ${colorMode === "light" ? colors.gray[3] : colors.gray[1]};
+        color: ${colorMode === "light" ? colors.gray[10] : colors.gray[1]};
         font-weight: 500;
         padding-top: ${space[8]};
         padding-inline-start: ${space[4]};
@@ -82,7 +82,7 @@ export const usePricePCLayoutStyles = () => {
       td {
         border-color: transparent;
         font-weight: 700;
-        color: ${colorMode === "light" ? colors.gray[3] : "white"};
+        color: ${colorMode === "light" ? colors.gray[10] : "white"};
         white-space: normal;
         word-break: break-word;
         padding-inline-start: ${space[4]};

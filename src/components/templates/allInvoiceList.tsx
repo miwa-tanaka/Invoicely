@@ -88,7 +88,7 @@ export const useAllInvoiceListStyles = () => {
     `,
 
     text: css`
-      color: ${colorMode === "light" ? colors.gray[2] : colors.white[1]};
+      color: ${colorMode === "light" ? colors.gray[9] : colors.white[1]};
     `,
 
     heading: css`

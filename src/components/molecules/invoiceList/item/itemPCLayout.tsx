@@ -56,7 +56,7 @@ export const useItemPCLayoutStyles = () => {
   const fontColorBlackAndWhite =
     colorMode === "light" ? colors.black[2] : "white";
   const fontColorGrayAndWhite =
-    colorMode === "light" ? colors.gray[3] : "white";
+    colorMode === "light" ? colors.gray[10] : "white";
 
   return {
     wrapper: css`
@@ -82,7 +82,7 @@ export const useItemPCLayoutStyles = () => {
       color: ${fontColorBlackAndWhite};
 
       .hashtag {
-        color: ${colors.gray[3]};
+        color: ${colors.gray[8]};
       }
     `,
     date: css`
