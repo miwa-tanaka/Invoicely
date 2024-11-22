@@ -70,6 +70,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>Invoicely</title>
+      </head>
       <body className={leagueSpartan.className}>
         <main>
           <RecoilRoot>
