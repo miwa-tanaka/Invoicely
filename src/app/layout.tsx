@@ -72,6 +72,24 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>Invoicely</title>
+        <link
+          rel="icon"
+          type="image/png"
+          href="/Invoicely/favicons/favicon-96x96.png"
+          sizes="96x96"
+        />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/Invoicely/favicons/favicon.svg"
+        />
+        <link rel="shortcut icon" href="/Invoicely/favicons/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/Invoicely/favicons/apple-touch-icon.png"
+        />
+        <link rel="manifest" href="/Invoicely/favicons/site.webmanifest" />
       </head>
       <body className={leagueSpartan.className}>
         <main>
