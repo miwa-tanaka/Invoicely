@@ -113,13 +113,13 @@ export default function Form({
 
   const onSubmit: SubmitHandler<FormInputs> = async () => {
     const data = getValues();
-    handleSaveData(data);
+    handleSaveData(data, false);
   };
 
-  const handleSaveData = (data: FormInputs) => {
+  const handleSaveData = (data: FormInputs, isSave: boolean) => {
     const id =
       state === "new" ? generateUniqueId() : invoiceId || generateUniqueId();
-    const invoiceData = formatStoringData(data, id, items);
+    const invoiceData = formatStoringData(data, id, items, isSave);
 
     const storedInvoices = localStorage.getItem("invoices");
     const invoicesArray = storedInvoices ? JSON.parse(storedInvoices) : [];
@@ -150,7 +150,7 @@ export default function Form({
     // no validation
     setIsValidationEnabled(false);
 
-    handleSaveData(getValues());
+    handleSaveData(getValues(), true);
     // close drawer
     onClose();
   };

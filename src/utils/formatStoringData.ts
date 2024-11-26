@@ -30,6 +30,7 @@ export function formatStoringData(
   data: FormInputs,
   id: dataType["id"],
   items: Item[],
+  isSave: boolean,
 ): dataType {
   // Calculate the total price for all items
   const total: number = items.reduce((accumulator, currentItem) => {
@@ -59,7 +60,7 @@ export function formatStoringData(
     paymentTerms: formattedPaymentTerms,
     clientName: data.clientName,
     clientEmail: data.clientEmail,
-    status: "pending",
+    status: isSave ? "draft" : "pending",
     senderAddress: {
       street: data.senderAddress,
       city: data.senderCity,
