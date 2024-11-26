@@ -20,7 +20,6 @@ import PlusIcon from "@/components/atoms/icons/plusIcon";
 import DeleteIcon from "@/components/atoms/icons/deleteIcon";
 import type { Item } from "@/data/dataType";
 import ItemListInput from "@/components/molecules/formItemList/input";
-import { useTextFieldStyles } from "@/components/molecules/inputFields/textField";
 import { useIsLargerThanPhoneSize } from "@/hooks/useIsLargerThanPhoneSize";
 
 type itemListProps = {
@@ -38,7 +37,6 @@ export default function ItemList({
 }: itemListProps): JSX.Element {
   const { table, addItemButton, deleteButton, listWrapper } =
     useItemListStyles();
-  const { error } = useTextFieldStyles();
   const isLargerThanPhoneSize = useIsLargerThanPhoneSize();
 
   const addItem = () => {
