@@ -43,13 +43,13 @@ export const useMarkAsPaidButtonStyles = () => {
   return {
     style: css`
       padding: 0 ${space[7]};
-      background-color: ${colors.purple[1]};
+      background-color: ${colors.purple[3]};
       color: white;
       transition: 0.2s ease;
       cursor: pointer;
 
       &:hover {
-        background-color: ${colors.purple[2]};
+        background-color: ${colors.purple[4]};
       }
     `,
   };

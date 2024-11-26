@@ -30,7 +30,7 @@ export const useSaveButtonStyles = () => {
     saveButton: css`
       background-color: ${colors.gray[5]};
       font-weight: 700;
-      color: ${colorMode === "light" ? colors.gray[2] : colors.gray[1]};
+      color: ${colorMode === "light" ? colors.white[1] : colors.gray[1]};
 
       &:hover {
         background-color: ${colors.black[1]};

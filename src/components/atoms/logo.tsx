@@ -6,7 +6,7 @@ export default function Logo(): JSX.Element {
   const { wrapper } = LogoStyles();
 
   return (
-    <Box css={wrapper} aria-label="logo: Invoicely">
+    <Box as="figure" css={wrapper} aria-label="logo: Invoicely">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="100"
@@ -35,7 +35,7 @@ export const LogoStyles = () => {
       height: ${headerSize};
       position: relative;
       overflow: hidden;
-      background-color: ${colors.purple[1]};
+      background-color: ${colors.purple[3]};
       border-radius: 0 ${radii["2xl"]} ${radii["2xl"]} 0;
 
       &::before {
@@ -45,7 +45,7 @@ export const LogoStyles = () => {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: ${colors.purple[1]};
+        background-color: ${colors.purple[3]};
         border-radius: 0 ${radii["2xl"]} ${radii["2xl"]} 0;
       }
 
@@ -56,7 +56,7 @@ export const LogoStyles = () => {
         position: absolute;
         bottom: 0;
         left: 0;
-        background-color: ${colors.purple[2]};
+        background-color: ${colors.purple[4]};
         border-radius: ${radii["2xl"]} 0 0 0;
       }
 

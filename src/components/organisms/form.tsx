@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { Flex, Text, useTheme } from "@chakra-ui/react";
+import { Flex, Text, useTheme, useColorMode } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import type { dataType, Item } from "@/data/dataType";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -185,11 +185,7 @@ export default function Form({
   };
 
   return (
-    <form
-      // method="POST"
-      ref={formRef}
-      style={{ height: "100%", overflowY: "auto" }}
-    >
+    <form ref={formRef} style={{ height: "100%", overflowY: "auto" }}>
       <Flex direction="column" px={{ base: 5, sm: 8 }} pb={4}>
         <Text css={sectionTitle}>Bill From</Text>
         <TextField
@@ -382,7 +378,6 @@ export default function Form({
             isRequired={isValidationEnabled}
             textFieldName="createdAt"
             textFieldId="createdAt"
-            autocomplete="date"
             min={minDate}
             max={maxDate}
             register={register("createdAt", {
@@ -451,15 +446,17 @@ export default function Form({
 
 export const useFormStyles = () => {
   const { space, colors, fontSizes, breakpoints } = useTheme();
+  const { colorMode } = useColorMode();
   const gapValue = space[3];
+
   return {
     sectionTitle: css`
-      color: ${colors.purple[1]};
+      color: ${colorMode === "light" ? colors.purple[3] : colors.purple[2]};
       font-weight: 700;
       margin-top: ${space[6]};
     `,
     itemTitle: css`
-      color: ${colors.gray[3]};
+      color: ${colors.gray[10]};
       font-size: ${fontSizes["lg"]};
       font-weight: 700;
       margin-top: ${space[10]};

@@ -72,7 +72,7 @@ export const useItemSPLayoutStyles = () => {
 
       .quantityPrice {
         padding-top: ${space[1]};
-        color: ${colorMode === "light" ? colors.gray[3] : colors.gray[2]};
+        color: ${colorMode === "light" ? colors.gray[10] : colors.gray[2]};
       }
     `,
   };

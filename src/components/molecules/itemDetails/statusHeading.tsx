@@ -71,7 +71,7 @@ export const useStatusHeadingStyles = () => {
       }
     `,
     text: css`
-      color: ${colorMode === "light" ? colors.gray[3] : colors.gray[1]};
+      color: ${colorMode === "light" ? colors.gray[10] : colors.gray[1]};
     `,
   };
 };

@@ -35,11 +35,11 @@ export const NewInvoiceButtonStyles = () => {
 
   return {
     button: css`
-      background-color: ${colors.purple[1]};
+      background-color: ${colors.purple[3]};
       color: ${colors.white[1]};
 
       &:hover {
-        background-color: ${colors.purple[2]};
+        background-color: ${colors.purple[4]};
       }
     `,
 
@@ -50,7 +50,7 @@ export const NewInvoiceButtonStyles = () => {
       border-radius: ${radii["full"]};
 
       svg path {
-        fill: ${colors.purple[1]};
+        fill: ${colors.purple[3]};
       }
     `,
   };

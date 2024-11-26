@@ -12,12 +12,12 @@ export default function StatusBadge({ status }: statusBadgeProps): JSX.Element {
       case "pending":
         return {
           backgroundColor: colors.orange[2],
-          color: colors.orange[1],
+          color: colorMode === "light" ? colors.orange[3] : colors.orange[1],
         };
       case "paid":
         return {
           backgroundColor: colors.green[2],
-          color: colors.green[1],
+          color: colorMode === "light" ? colors.green[3] : colors.green[1],
         };
       case "draft":
         return {

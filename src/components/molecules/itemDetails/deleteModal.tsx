@@ -88,7 +88,7 @@ export const useDeleteModalStyles = () => {
     `,
     modalBody: css`
       padding: ${space[3]} ${space[8]};
-      color: ${colorMode === "light" ? colors.gray[2] : colors.gray[1]};
+      color: ${colorMode === "light" ? colors.gray[9] : colors.gray[1]};
 
       @media screen and (min-width: ${breakpoints["sm"]}) {
         padding: ${space[3]} ${space[12]};
@@ -105,20 +105,20 @@ export const useDeleteModalStyles = () => {
     `,
     deleteButton: css`
       padding: 0 ${space[7]};
-      background-color: ${colors.red[1]};
+      background-color: ${colors.red[3]};
       color: white;
       transition: 0.2s ease;
       cursor: pointer;
 
       &:hover {
-        background-color: ${colors.red[2]};
+        background-color: ${colors.red[4]};
       }
     `,
     cancelButton: css`
       background-color: ${colorMode === "light"
         ? colors.white[2]
         : colors.navy[2]};
-      color: ${colorMode === "light" ? colors.gray[3] : colors.gray[1]};
+      color: ${colorMode === "light" ? colors.gray[10] : colors.gray[1]};
 
       &:hover {
         background-color: ${colorMode === "light" ? colors.gray[1] : "white"};

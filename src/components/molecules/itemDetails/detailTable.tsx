@@ -1,4 +1,11 @@
-import { Box, Text, Flex, useTheme, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Flex,
+  useTheme,
+  Heading,
+  useColorMode,
+} from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import type { dataType } from "@/data/dataType";
 
@@ -31,12 +38,12 @@ export default function DetailTable({
     <Flex w="full" align="center" direction="column" gap={6}>
       <Flex w="full" justify="space-between" wrap="wrap">
         <Box>
-          <Text css={dark}>
-            <Text as="span" color={colors.gray[3]}>
+          <Heading as="h1" fontSize="md" css={dark}>
+            <Text as="span" color={colors.gray[8]}>
               #
             </Text>
             {id}
-          </Text>
+          </Heading>
           <Text css={desc}>{description}</Text>
         </Box>
         <Box css={address}>
@@ -81,7 +88,7 @@ export const useDetailTableStyles = () => {
   const { colorMode } = useColorMode();
 
   const fontColorGrayAndWhite =
-    colorMode === "light" ? colors.gray[3] : "white";
+    colorMode === "light" ? colors.gray[10] : "white";
 
   return {
     dark: css`
