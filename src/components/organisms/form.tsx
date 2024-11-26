@@ -378,7 +378,6 @@ export default function Form({
             isRequired={isValidationEnabled}
             textFieldName="createdAt"
             textFieldId="createdAt"
-            autocomplete="date"
             min={minDate}
             max={maxDate}
             register={register("createdAt", {

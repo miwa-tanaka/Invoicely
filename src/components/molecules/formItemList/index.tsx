@@ -93,7 +93,11 @@ export default function ItemList({
                 <Th>Qty.</Th>
                 <Th>Price</Th>
                 <Th>Total</Th>
-                <Th></Th>
+                <Th>
+                  <Text as="span" className="hiddenText">
+                    Delete item
+                  </Text>
+                </Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -102,7 +106,7 @@ export default function ItemList({
 
                 return (
                   <Tr key={index}>
-                    <Td display="flex" flexDirection="column">
+                    <Td>
                       <ItemListInput
                         value={item.name}
                         type="text"
@@ -113,19 +117,8 @@ export default function ItemList({
                           handleItemChange(index, "name", e.target.value)
                         }
                         hasError={hasError}
+                        ariaLabel={`Name of item ${index + 1}`}
                       />
-                      {hasError ? (
-                        <Text
-                          as="span"
-                          id={`${index}-name-error`}
-                          role="alert"
-                          aria-live="polite"
-                          css={error}
-                          mt={2}
-                        >
-                          can&#39;t be empty
-                        </Text>
-                      ) : null}
                     </Td>
                     <Td>
                       <ItemListInput
@@ -142,6 +135,7 @@ export default function ItemList({
                             inputValue === "" ? 0 : parseFloat(inputValue);
                           handleItemChange(index, "quantity", parsedValue);
                         }}
+                        ariaLabel={`Quantity of item ${index + 1}`}
                       />
                     </Td>
                     <Td isNumeric>
@@ -164,6 +158,7 @@ export default function ItemList({
                           const numericValue = parseFloat(inputValue) || 0;
                           handleItemChange(index, "price", numericValue);
                         }}
+                        ariaLabel={`Price of item ${index + 1}`}
                       />
                     </Td>
                     <Td isNumeric>{item.total.toFixed(2)}</Td>
@@ -224,19 +219,8 @@ export default function ItemList({
                         handleItemChange(index, "name", e.target.value)
                       }
                       hasError={hasError}
+                      ariaLabel={`Name of item ${index + 1}`}
                     />
-                    {hasError ? (
-                      <Text
-                        as="span"
-                        id={`${index}-name-error`}
-                        role="alert"
-                        aria-live="polite"
-                        css={error}
-                        mt={2}
-                      >
-                        can&#39;t be empty
-                      </Text>
-                    ) : null}
                   </Flex>
                   <Flex justify="space-between" gap={4}>
                     <Flex direction="column" gap={2}>
@@ -257,6 +241,7 @@ export default function ItemList({
                             inputValue === "" ? 0 : parseFloat(inputValue);
                           handleItemChange(index, "quantity", parsedValue);
                         }}
+                        ariaLabel={`Quantity of item ${index + 1}`}
                       />
                     </Flex>
                     <Flex direction="column" w="30%" gap={2}>
@@ -282,6 +267,7 @@ export default function ItemList({
                           const numericValue = parseFloat(inputValue) || 0;
                           handleItemChange(index, "price", numericValue);
                         }}
+                        ariaLabel={`Price of item ${index + 1}`}
                       />
                     </Flex>
                     <Flex direction="column" w="30%" gap={4}>
@@ -339,6 +325,15 @@ export const useItemListStyles = () => {
 
             &:first-of-type {
               width: 43%;
+            }
+
+            .hiddenText {
+              position: absolute;
+              clip: rect(1px, 1px, 1px, 1px);
+              height: 1px;
+              width: 1px;
+              overflow: hidden;
+              white-space: nowrap;
             }
           }
         }

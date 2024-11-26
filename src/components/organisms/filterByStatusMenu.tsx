@@ -3,9 +3,9 @@ import {
   Checkbox,
   CheckboxGroup,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
   useTheme,
   useColorMode,
 } from "@chakra-ui/react";
@@ -31,11 +31,13 @@ export default function FilterByStatusMenu({
   };
 
   return (
-    <Menu closeOnSelect={false}>
-      <MenuButton as={Button} rightIcon={<ArrowDownIcon />} css={button}>
-        {isLargerThanPhoneSize ? "Filter by status" : "Filter"}
-      </MenuButton>
-      <MenuList py={4} px={6} css={menuWrapper}>
+    <Popover>
+      <PopoverTrigger>
+        <Button rightIcon={<ArrowDownIcon />} css={button}>
+          {isLargerThanPhoneSize ? "Filter by status" : "Filter"}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent py={4} px={6} css={menuWrapper} aria-label="Status lists">
         <CheckboxGroup value={selectedStatuses} onChange={handleCheckboxChange}>
           <Stack spacing={[1, 3]} direction="column">
             {checkBoxData.map((status) => (
@@ -45,8 +47,8 @@ export default function FilterByStatusMenu({
             ))}
           </Stack>
         </CheckboxGroup>
-      </MenuList>
-    </Menu>
+      </PopoverContent>
+    </Popover>
   );
 }
 
@@ -71,8 +73,10 @@ export const NewInvoiceButtonStyles = () => {
     `,
 
     menuWrapper: css`
+      width: fit-content;
       border-color: ${colors.white[1]};
       box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+      background-color: ${colorMode === "light" ? "white" : colors.navy[2]};
     `,
 
     checkbox: css`
